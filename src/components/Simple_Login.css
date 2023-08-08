@@ -1,0 +1,39 @@
+.main1{
+    background-color: #e6dfdf;
+    border-radius: 20px;
+    width: 50%;
+}
+.btn{
+    color: rgb(15, 15, 233);
+    border: 2px solid #007bff;
+}
+.input1{
+   width: 300px;
+}
+.input2{
+    width: 300px;
+}
+.input1.isValid input{
+    background-color: red;
+}
+.error{
+    background-color: rgb(187, 8, 246);
+    width: 500px;
+    border-radius: 20px;
+}
+.ok{
+    height: 40px;
+    width: 90px;
+    left: 100px;
+    border: 2px solid chocolate;
+    background-color: rgb(175, 71, 97);
+    border-radius: 10px;
+    box-shadow: 60px;
+    box-shadow: #007bff;
+}
+.error-container {
+    background: #111; /* You can adjust the shade of black as needed */
+    color: white; /* Text color for better visibility */
+    padding: 10px;
+    border-radius: 5px;
+  }
