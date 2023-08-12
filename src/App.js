@@ -1,32 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-//import Login_Page from './components/Login_Page';
-//import NewExpense from './components/New_Expense';
-//import ExpenseForm from './components/ExpenseForm';
-//import ToDo from './components/ToDo';
-//import RagisterForm_Cancel from './components/RagisterForm_Cancel';
-//import Update_data from './components/Update_data';
-//import ListAdd from './components/ListAdd';
-import Simple_Login from './components/Simple_Login';
-//import Chatgpt from './components/Chatgpt';
+import React, { useState,useEffect } from 'react';
 
-const App=()=>{
-     
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import MainHeader from './components/MainHeader/MainHeader';
+
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+   useEffect(()=>{
+    const storedUserLoggedInformation = localStorage.getItem('isLoggedIn');
+
+    if(storedUserLoggedInformation==='1'){
+      setIsLoggedIn(true);
+    }
+   },[])
+
+  const loginHandler = (email, password) => {
+    // We should of course check email and password
+    // But it's just a dummy/ demo anyways
+    localStorage.setItem('isLoggedIn','1');
+    setIsLoggedIn(true);
+  };
+  const logoutHandler = () => {
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+  };
+
   return (
-    <>
-     <h2 className='let'>Let's get started</h2>
-     {/* <RagisterForm_Cancel/> */}
-      {/* <ToDo/> */}
-      {/* <NewExpense/> */}
-      {/* <ExpenseForm/> */}
-      {/* <Login_Page/> */}
-      {/* <expense item={expense}></expense> */}
-      {/* <ListAdd/> */}
-      <Simple_Login/>
-      {/* <Chatgpt/> */}
-       </>
+    <React.Fragment>
+      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} /><br/><br/><br/>
+      <main>
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
+    </React.Fragment>
   );
 }
 
 export default App;
+
